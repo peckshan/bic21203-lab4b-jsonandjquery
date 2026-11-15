@@ -9,11 +9,18 @@ This repository contains the source code for Lab 4b. Lab 4b focuses on using JSO
 For Q1,
 A JSON file is created to store 2 book objects. Each book has properties of title, author, publication year and genres.
 
+![Q1 Code](Screenshot/json%data.png)
+
 For Q2,
 The JSON data is retrieved using JavaScript fetch() API and the information is displayed on the webpage using createElement(), textContent and appendChild().
 
+![Q2 Output](Screenshot/book.png)
+
 For Q3,
 jQuery is used to perform DOM manipulation. For example, .text(), .addClass() and .on() methods are used to modify text, add a CSS class and handle button click events.
+
+![Q3 Output](Screenshot/DOM%manipulation.png)
+![Q3 Output](Screenshot/alert.png)
 
 Steps:
 1. Open project folder in Visual Studio Code.
