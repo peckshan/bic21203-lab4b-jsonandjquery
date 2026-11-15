@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Book</title>
+    </head>
+    
+    <body>
+        <h1>Book Information</h1>
+
+        <div id="bookInfo"></div>
+
+        <script>
+            async function loadBooks(){
+                const bookInfo = document.getElementById("bookInfo");
+
+                try{
+                    const response = await fetch("books.json");
+
+                    if (!response.ok){
+                        throw new Error("Failed to load books.json");
+                    }
+
+                    const data = await response.json();
+                    if(!data.books || data.books.length < 2){
+                        throw new Error("Unexpected data format");
+                    }
+
+                    const books = data.books;
+                    bookInfo.textContent = "";
+
+                    const titleHeading = document.createElement("h2");
+                    titleHeading.textContent = "First Book Title: ";
+                    bookInfo.appendChild(titleHeading)
+
+                    const firstTitle = document.createElement("p");
+                    firstTitle.textContent = books[0].title;
+                    bookInfo.appendChild(firstTitle);
+
+                    const authorHeading = document.createElement("h2");
+                    authorHeading.textContent = "Second Book Author: ";
+                    bookInfo.appendChild(authorHeading);
+
+                    const secondAuthor = document.createElement("p");
+                    secondAuthor.textContent = books[1].author;
+                    bookInfo.appendChild(secondAuthor);
+
+                    const genreHeading = document.createElement("h2");
+                    genreHeading.textContent = "Book Genres: ";
+                    bookInfo.appendChild(genreHeading);
+
+                    books.forEach(book => {
+                        const bookTitle = document.createElement("h3");
+                        bookTitle.textContent = book.title;
+                        bookInfo.appendChild(bookTitle);
+
+                        const genreList = document.createElement("p");
+                        genreList.textContent = "--- " + book.genres.join(", ");
+                        bookInfo.appendChild(genreList);
+                    });
+                } catch (error){
+                    bookInfo.textContent = "Sorry, unable to load book information. Please try again.";
+                    console.error(error);
+                }
+            }
+
+            loadBooks();
+        </script>
+    </body>
+</html>
